@@ -70,7 +70,7 @@ const Join = styled.a`
         background-color: rgba(0,0,0,.06);
         color: rgba(0,0,0,.9);
     }
-    `
+`;
 
 const SignIn = styled.a`
     box-shadow: inset 0 0 0 1px #0a66c2;
@@ -86,7 +86,7 @@ const SignIn = styled.a`
     &:hover{
         background-color: rgba(112,181,249,.15);
     }
-`
+`;
 const Section = styled.section`
     display:flex;
     align-content: start;
@@ -103,7 +103,7 @@ const Section = styled.section`
         margin: auto;
         min-height: 0px;
     }
-`
+`;
 const Hero = styled.div`
     width    : 100%;
     h1{
@@ -136,7 +136,7 @@ const Hero = styled.div`
         }
     }
 
-    `
+`;
 
 const Form = styled.form`
     margin-top: 100px;
@@ -168,7 +168,7 @@ const Google = styled.button`
         background-color: rgba(207,207,207,0.25);
         color: rgba(0,0,0,.8);
     }
-    `;
+`;
 
 
 export default Login;
