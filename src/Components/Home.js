@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
 const Home = (props)=>{
-    return (<div>
+    return (<Main>
         Home
-    </div>)
+    </Main>)
 }
 
+
+const Main = styled.div`
+    
+`;
 export default Home
 
