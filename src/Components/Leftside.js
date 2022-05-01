@@ -6,20 +6,20 @@ const LeftSide = (props) => {
             <ArtCard>
                 <UserInfo>
                     <CardBackground />
-                    <a>
+                    <p>
                         <Photo />
                         <Link>
                             Welcome, there
                         </Link>
-                    </a>
-                    <a>
+                    </p>
+                    <p>
                         <AddPhotoText>
                             Add a photo
                         </AddPhotoText>
-                    </a>
+                    </p>
                 </UserInfo>
                 <Widget>
-                    <a>
+                    <p>
                         <div>
 
                             <span>
@@ -29,38 +29,38 @@ const LeftSide = (props) => {
                                 Grow your network
                             </span>
                         </div>
-                        <img src="/images/widget-icon.svg" alt="Wigget Icon" />
-                    </a>
+                        <img src="/images/widget-icon.svg" alt="Widget Icon" />
+                    </p>
                 </Widget>
                 <Item>
                     <span>
-                        <img src="/images/item-icon.svg" />
+                        <img src="/images/item-icon.svg" alt="Items "/>
                         My Items
                     </span>
                 </Item>
             </ArtCard>
             <CommunityCard>
-                <a>
+                <p>
                     <span>
                         Groups
                     </span>
-                </a>
-                <a>
+                </p>
+                <p>
                     <span>
                         Events
                         <img src="/images/plus-icon.svg" alt="" />
                     </span>
-                </a>
-                <a>
+                </p>
+                <p>
                     <span>
                         Follow Hashtags
                     </span>
-                </a>
-                <a>
+                </p>
+                <p>
                     <span>
                         Discover More
                     </span>
-                </a>
+                </p>
             </CommunityCard>
         </Container>
     )
@@ -124,10 +124,10 @@ const ArtCard = styled.div`
 `;
 
 const Widget = styled.div`
-     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 12px;
   padding-bottom: 12px;
-  & > a {
+  & > p {
     text-decoration: none;
     display: flex;
     justify-content: space-between;
@@ -181,7 +181,7 @@ const CommunityCard = styled(ArtCard)`
   text-align: left;
   display: flex;
   flex-direction: column;
-  a {
+  p {
     color: black;
     padding: 4px 12px 4px 12px;
     font-size: 12px;

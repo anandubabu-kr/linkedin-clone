@@ -11,18 +11,18 @@ const RightSide = (props) => {
 
                 <FeedList>
                     <li>
-                        <a>
+                        <p>
                             <Avatar />
-                        </a>
+                        </p>
                         <div>
                             <span>#Linkedin</span>
                             <button>Follow</button>
                         </div>
                     </li>
                     <li>
-                        <a>
+                        <p>
                             <Avatar />
-                        </a>
+                        </p>
                         <div>
                             <span>#Video</span>
                             <button>Follow</button>
@@ -38,7 +38,7 @@ const RightSide = (props) => {
             <BannerCard>
                 <img
                     src="https://static-exp1.licdn.com/scds/common/u/images/promo/ads/li_evergreen_jobs_ad_300x250_v1.jpg"
-                    alt=""
+                    alt="Add page"
                 />
             </BannerCard>
         </Container>

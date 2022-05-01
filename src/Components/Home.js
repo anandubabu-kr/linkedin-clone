@@ -9,7 +9,7 @@ const Home = (props) => {
     return (<Container>
         <Section>
             <h5>
-                <a href="#">
+                <a href="/home">
                     Hiring in a Hurry? - 
                 </a>
             </h5>
@@ -45,22 +45,18 @@ const Section = styled.div`
         a{
             font-weight: 700;
         }
-    }
-    p{
-        font-size: 14px;
-        color:#434649;
-        font-weight: 600;
+        p{
+            font-size: 14px;
+            color:#434649;
+            font-weight: 700;
+        }
     }
     @media screen and (max-width: 768px) {
         flex-direction: column;
         padding: 0px;
     }
 `;
-const Content = styled.div`
-    max-width: 1128px;
-    margin-left: auto;
-    margin-right: auto;
-`;
+
 
 const Layout = styled.div`
     display: grid;
