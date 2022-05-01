@@ -9,8 +9,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={<Login />} />
-
-          {/* </Route> */}
           <Route path='home' element={
             <>
               <Header />
