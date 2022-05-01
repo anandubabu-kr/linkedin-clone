@@ -50,17 +50,17 @@ const Header = (props) => {
                         </NavList>
                         <NavList>
                             <User>
-                                <a>
+                                <p>
                                     <img src="/images/user.svg" alt="Nav" />
-                                    <span>Me
-
+                                    <span>
+                                        Me
                                         <img src="/images/down-icon.svg" alt="Nav" />
                                     </span>
-                                </a>
+                                </p>
                                 <Signout>
-                                    <a>
+                                    <p>
                                         Sign Out
-                                    </a>
+                                    </p>
                                 </Signout>
                             </User>
                             <Work>
@@ -196,7 +196,7 @@ const Nav = styled.nav`
 
 `;
 
-const Signout=styled.div`
+const Signout = styled.div`
     position: absolute;
     top:45px;
     background-color: white;
@@ -204,14 +204,17 @@ const Signout=styled.div`
     width:100px;
     height:40px;
     font-size: 1rem;
+    padding:.5rem;
     transition: .5s ease-in;
     text-align: center;
     display: none;
-
 `;
 
 const User = styled(NavList)`
-    a>img{
+    p{
+        font-size: .8rem;
+    }
+    p>img{
         width: 26px;
         aspect-ratio: 1/1;
         border-radius: 50px;
