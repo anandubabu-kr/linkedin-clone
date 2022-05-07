@@ -1,8 +1,37 @@
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import {  auth, provider } from "../firebase"
+import { setUser } from "../redux/actions/actionUser";
+import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
 
 const Login = (props) => {
+    const userInfo = useSelector((state) => state);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    // This is to enable google login defined in firbase file
+    let user = userInfo.userInfo
+    const signInHandler = async (e) => {
+        e.preventDefault()
+        user = await signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                // console.log('Sign in function : ---', result.user.displayName)
+                return user
+            }).catch((error) => {
+                const errorCode = error.code;
+                return errorCode
+            });
+        // user = await signIn()
+        dispatch(setUser(user))
+        // console.log({ 'signIn   function returened  : ': user })
+        if (user) {
+            navigate('/')
+        }
+
+    }
     return (
-        <Container class="login">
+        <Container className="login">
             <Nav>
                 <a href="/">
                     <img src="/images/login-logo.svg" alt='LinkedIn login' />
@@ -21,12 +50,12 @@ const Login = (props) => {
                     <h1>
                         Welcome to your professional community
                     </h1>
-                    <img src="/images/login-hero.svg" alt="Group of Profesionals"/>
+                    <img src="/images/login-hero.svg" alt="Group of Profesionals" />
                 </Hero>
                 <Form>
-                    <Google>
-                    <img src="/images/google.svg" alt="Group of Profesionals"/>
-                    Sign In with Google
+                    <Google onClick={signInHandler}>
+                        <img src="/images/google.svg" alt="Group of Profesionals" />
+                        Sign In with Google
                     </Google>
                 </Form>
             </Section>
@@ -172,3 +201,5 @@ const Google = styled.button`
 
 
 export default Login;
+
+// export default Login;

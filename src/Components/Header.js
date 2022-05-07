@@ -67,12 +67,10 @@ const Header = (props) => {
                                 <a href="/home" >
                                     <img src="/images/nav-work.svg" alt="Nav" />
                                     <span>Work
-
                                         <img src="/images/down-icon.svg" alt="Nav" />
                                     </span>
 
                                 </a>
-
                             </Work>
                         </NavList>
                     </NavListWrap>

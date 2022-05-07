@@ -1,69 +1,66 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const LeftSide = (props) => {
-    return (
-        <Container>
-            <ArtCard>
-                <UserInfo>
-                    <CardBackground />
-                    <p>
-                        <Photo />
-                        <Link>
-                            Welcome, there
-                        </Link>
-                    </p>
-                    <p>
-                        <AddPhotoText>
-                            Add a photo
-                        </AddPhotoText>
-                    </p>
-                </UserInfo>
-                <Widget>
-                    <p>
-                        <div>
-
-                            <span>
-                                Connections
-                            </span>
-                            <span>
-                                Grow your network
-                            </span>
-                        </div>
-                        <img src="/images/widget-icon.svg" alt="Widget Icon" />
-                    </p>
-                </Widget>
-                <Item>
-                    <span>
-                        <img src="/images/item-icon.svg" alt="Items "/>
-                        My Items
-                    </span>
-                </Item>
-            </ArtCard>
-            <CommunityCard>
-                <p>
-                    <span>
-                        Groups
-                    </span>
-                </p>
-                <p>
-                    <span>
-                        Events
-                        <img src="/images/plus-icon.svg" alt="" />
-                    </span>
-                </p>
-                <p>
-                    <span>
-                        Follow Hashtags
-                    </span>
-                </p>
-                <p>
-                    <span>
-                        Discover More
-                    </span>
-                </p>
-            </CommunityCard>
-        </Container>
-    )
+  const user = useSelector((state) => state.userInfo.user)
+  return (
+    <Container>
+      <ArtCard>
+        <UserInfo>
+          <CardBackground />
+          <Photo />
+          <Link>
+            Welcome,  {user && user.displayName}
+          </Link>
+          <AddPhotoText>
+            Add a photo
+          </AddPhotoText>
+        </UserInfo>
+        <Widget>
+          <section>
+            <div>
+              <span>
+                Connections
+              </span>
+              <span>
+                Grow your network
+              </span>
+            </div>
+            <img src="/images/widget-icon.svg" alt="Widget Icon" />
+          </section>
+        </Widget>
+        <Item>
+          <span>
+            <img src="/images/item-icon.svg" alt="Items " />
+            My Items
+          </span>
+        </Item>
+      </ArtCard>
+      <CommunityCard>
+        <p>
+          <span>
+            Groups
+          </span>
+        </p>
+        <p>
+          <span>
+            Events
+            <img src="/images/plus-icon.svg" alt="" />
+          </span>
+        </p>
+        <p>
+          <span>
+            Follow Hashtags
+          </span>
+        </p>
+        <p>
+          <span>
+            Discover More
+          </span>
+        </p>
+      </CommunityCard>
+    </Container>
+  )
 }
 
 const Container = styled.div`
@@ -127,7 +124,7 @@ const Widget = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 12px;
   padding-bottom: 12px;
-  & > p {
+  & > section {
     text-decoration: none;
     display: flex;
     justify-content: space-between;
@@ -174,7 +171,6 @@ const Item = styled.a`
     background-color: rgba(0, 0, 0, 0.08);
   }
 `;
-
 
 const CommunityCard = styled(ArtCard)`
   padding: 8px 0 0;
