@@ -1,12 +1,15 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Main = (props) => {
+    const user = useSelector((state) => state.userInfo.user)
+    
     return (
         <Container>
             <CommonCard>
                 <ShareBox>
                     <div>
-                        <img src="/images/user.svg" alt="Share box" />
+                        <img src={user ? user.photoURL:"/images/user.svg"} alt="Share box" />
                         <button>
                             Start a post
                         </button>
@@ -129,6 +132,8 @@ const ShareBox = styled(CommonCard)`
             background: transparent;
             display: flex;
             font-weight: 600;
+            cursor: pointer;
+
             align-items: center ;
         }
         &:first-child{
@@ -290,10 +295,3 @@ const SocialActions = styled.div`
     }
 `;
 export default Main;
-
-{/* https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l : like
-    https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo  : clebrate
-    https://static-exp1.licdn.com/sc/h/9whrgl1hq2kfxjqr9gqwoqrdi : support
-    https://static-exp1.licdn.com/sc/h/asmf650x603bcwgefb4heo6bm : love
-    https://static-exp1.licdn.com/sc/h/39axkb4qe8q95ieljrhqhkxvl : insiteful
-    https://static-exp1.licdn.com/sc/h/1z80ze8ler6arc76a8rxsgqbh : curiouse */}

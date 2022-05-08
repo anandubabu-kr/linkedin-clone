@@ -28,10 +28,11 @@ export default App;
 
 const ErrorPage=()=>{
   return(
-    <div>
+    <div className='error-page'>
       <h1>
         404 buddy
       </h1>
     </div>
   )
 }
+

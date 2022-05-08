@@ -3,17 +3,22 @@ import { useSelector } from "react-redux";
 
 const LeftSide = (props) => {
   const user = useSelector((state) => state.userInfo.user)
+  console.log('Photo URL  : ',user.photoURL)
   return (
     <Container>
       <ArtCard>
         <UserInfo>
           <CardBackground />
-          <Photo />
+          <Photo photoULR={user && user.photoURL} />
           <Link>
             Welcome,  {user && user.displayName}
           </Link>
           <AddPhotoText>
-            Add a photo
+            Add a photo <br/>
+            <p>
+            {user && user.email}
+
+            </p>
           </AddPhotoText>
         </UserInfo>
         <Widget>
@@ -82,14 +87,14 @@ const CardBackground = styled.div`
 `;
 const Photo = styled.div`
     box-shadow: none;
-    background-image: url('/images/photo.svg');
+    background-image: url(${(props)=>props.photoULR||'/images/photo.svg'});
     width: 72px;    
     aspect-ratio: 1/1;
     box-sizing: border-box; 
     background-clip: content-box;   
     background-color: white;
     background-position: center;
-    background-size: 60%;
+    background-size: cover;
     background-repeat: no-repeat;
     border: 2px solid white ;
     margin: -38px auto -12px;
@@ -97,6 +102,7 @@ const Photo = styled.div`
 `;
 const Link = styled.div`
     font-size: 1rem;
+    margin-top: 1rem;
     line-height: 1.5;
     color: rgba(0,0,0,.9);
     font-weight: 600;
@@ -107,6 +113,9 @@ const AddPhotoText = styled.div`
     font-size: .8rem;
     line-height: 1.33;
     font-weight: 400;
+    p{
+      color:black;
+    }
 `;
 const ArtCard = styled.div`
     text-align: center;

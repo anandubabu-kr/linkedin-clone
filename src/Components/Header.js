@@ -1,5 +1,10 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 const Header = (props) => {
+
+const user = useSelector((state) => state.userInfo.user)
+
+
     return (
         <Container>
             <Content>
@@ -51,7 +56,7 @@ const Header = (props) => {
                         <NavList>
                             <User>
                                 <p>
-                                    <img src="/images/user.svg" alt="Nav" />
+                                    <img src={user ? user.photoURL:"/images/user.svg"} alt="Nav" />
                                     <span>
                                         Me
                                         <img src="/images/down-icon.svg" alt="Nav" />
