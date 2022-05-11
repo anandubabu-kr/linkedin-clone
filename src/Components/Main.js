@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import CreatePost from "./CreatePost";
 
 const Main = (props) => {
     const user = useSelector((state) => state.userInfo.user)
@@ -95,8 +96,9 @@ const Main = (props) => {
                         </SocialActions>
                     </Article>
                 </div>
-            </CommonCard>
 
+            </CommonCard>
+            <CreatePost/>
         </Container>
     )
 }

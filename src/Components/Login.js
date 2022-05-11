@@ -37,10 +37,10 @@ const Login = (props) => {
                     <img src="/images/login-logo.svg" alt='LinkedIn login' />
                 </a>
                 <div>
-                    <Join>
+                    <Join onClick={signInHandler}>
                         Join now
                     </Join>
-                    <SignIn>
+                    <SignIn onClick={signInHandler}>
                         Sign In
                     </SignIn>
                 </div>
