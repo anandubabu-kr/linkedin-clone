@@ -1,40 +1,48 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CreatePost from "./CreatePost";
+import { useState } from "react";
 
 const Main = (props) => {
     const user = useSelector((state) => state.userInfo.user)
+    const [showCreatePost, setShowCreatePost] = useState(false)
+
+    const handleShowCreatePostHandler=(e)=>{
+        e.preventDefault()
+        setShowCreatePost(!showCreatePost)
+    }
     
+
     return (
         <Container>
             <CommonCard>
                 <ShareBox>
                     <div>
-                        <img src={user ? user.photoURL:"/images/user.svg"} alt="Share box" />
-                        <button>
+                        <img src={user ? user.photoURL : "/images/user.svg"} alt="Share box" />
+                        <button onClick={handleShowCreatePostHandler}>
                             Start a post
                         </button>
                     </div>
                     <div>
-                        <button>
+                        <button onClick={handleShowCreatePostHandler}>
                             <img src="/images/photo-icon.svg" alt="Post new" />
                             <span>
                                 Photo
                             </span>
                         </button>
-                        <button>
+                        <button onClick={handleShowCreatePostHandler}>
                             <img src="/images/video-icon.svg" alt="Video add" />
                             <span>
                                 Video
                             </span>
                         </button>
-                        <button>
+                        <button onClick={handleShowCreatePostHandler}>
                             <img src="/images/event-icon.svg" alt="Event add" />
                             <span>
                                 event
                             </span>
                         </button>
-                        <button>
+                        <button onClick={handleShowCreatePostHandler}>
                             <img src="/images/article-icon.svg" alt="Article add" />
                             <span>
                                 Write article
@@ -96,9 +104,11 @@ const Main = (props) => {
                         </SocialActions>
                     </Article>
                 </div>
-
             </CommonCard>
-            <CreatePost/>
+
+            {showCreatePost?<CreatePost closeHandler={handleShowCreatePostHandler} />:''}
+            
+            
         </Container>
     )
 }

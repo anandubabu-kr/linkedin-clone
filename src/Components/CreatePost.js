@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const CreatePost = (props) => {
-    const [editorText, setEditorText] = useState('text ')
+    const [editorText, setEditorText] = useState('')
     const user = useSelector((state) => state.userInfo.user)
-    const handleEditorTextChange=(e)=>{
+    const handleEditorTextChange = (e) => {
+        e.preventDefault()
         setEditorText(e.target.value);
     }
     return (
@@ -13,21 +14,26 @@ const CreatePost = (props) => {
             <Content>
                 <Header>
                     <h2>Create a post</h2>
-                    <button>
+                    <button onClick={props.closeHandler}>
                         <img alt="X" src="/images/close-icon.svg" />
                     </button>
                 </Header>
                 <SharedContent>
                     <UserInfo>
-                        <img src={user ? user.photoURL : "/images/user.svg"} />
+                        <img alt='User'  src={user ? user.photoURL : "/images/user.svg"} />
                         <span>
                             {user ? user.displayName : "No user Logged in"}
                         </span>
                     </UserInfo>
                     <Editor>
-                        <textarea onChange={handleEditorTextChange} value={editorText}>
-
-                        </textarea>
+                        <textarea onChange={handleEditorTextChange}
+                            autoFocus={true}
+                            placeholder='What do you wanna talk about ?'
+                            value={editorText}
+                        />
+                        <UploadImage>
+                            <input type='file' placeholder="Uploade"/>
+                        </UploadImage>
                     </Editor>
                 </SharedContent>
                 <ShareCreation>
@@ -94,6 +100,8 @@ const Header = styled.div`
         height: 40px;
         width: 40px;
         min-width: auto;
+        background: transparent;
+        border:0px;
         color: rgba(0,0,0,.15);
 
     }
@@ -128,7 +136,7 @@ const UserInfo = styled.div`
 const ShareCreation = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 12px 24px 12px 16px;
+    margin: 0px 1rem;
 `
 const AssetButton = styled.button`
     background: transparent;
@@ -160,10 +168,22 @@ const PostButton = styled(AssetButton)`
 `;
 
 const Editor = styled.div`
+    padding:1rem;
+
     textarea{
         width: 100%;
+        border:0px;
         min-height: 200px;
         resize: none    ;
     }
+    textarea:focus{
+        border:0px;
+        outline: none;
+    }
 `
+
+const UploadImage=styled.div`   
+
+`;
+
 export default CreatePost

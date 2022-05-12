@@ -4,27 +4,34 @@ import {  auth, provider } from "../firebase"
 import { setUser } from "../redux/actions/actionUser";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
+import { useEffect } from "react";
 
 const Login = (props) => {
-    const userInfo = useSelector((state) => state);
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const userInfo = useSelector((state) => state.userInfo);
+    useEffect(()=>{
+        console.log('Login : ',userInfo)
+        if (user.user) {
+            navigate('/')
+
+        }
+    })
+
     // This is to enable google login defined in firbase file
-    let user = userInfo.userInfo
+    let user = userInfo
     const signInHandler = async (e) => {
         e.preventDefault()
         user = await signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-                // console.log('Sign in function : ---', result.user.displayName)
+                // console.log('Sign in function : ---', user)
                 return user
             }).catch((error) => {
                 const errorCode = error.code;
                 return errorCode
             });
-        // user = await signIn()
         dispatch(setUser(user))
-        // console.log({ 'signIn   function returened  : ': user })
         if (user) {
             navigate('/')
         }

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const LeftSide = (props) => {
   const user = useSelector((state) => state.userInfo.user)
-  console.log('Photo URL  : ',user.photoURL)
+  // console.log('Photo URL  : ',user.photoURL)
   return (
     <Container>
       <ArtCard>
