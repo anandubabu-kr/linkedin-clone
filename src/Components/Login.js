@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import {  auth, provider } from "../firebase"
+import { auth, provider } from "../services/firebase"
 import { setUser } from "../redux/actions/actionUser";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
@@ -10,11 +10,11 @@ const Login = (props) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const userInfo = useSelector((state) => state.userInfo);
-    useEffect(()=>{
-        console.log('Login : ',userInfo)
+    useEffect(() => {
+        document.title = "Login | LinkedIn"
+        // console.log('Login : ',userInfo)
         if (user.user) {
             navigate('/')
-
         }
     })
 

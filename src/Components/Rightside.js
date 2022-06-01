@@ -47,7 +47,6 @@ const RightSide = (props) => {
 
 const Container = styled.div`
     grid-area: rightside;
-
 `;
 
 const FollowCard = styled.div`
@@ -119,6 +118,9 @@ const Recommendation = styled.a`
 `;
 
 const BannerCard = styled(FollowCard)`
+    position: sticky;
+    position: -webkit-sticky;
+        top: 60px;
   img {
     width: 100%;
     height: 100%;

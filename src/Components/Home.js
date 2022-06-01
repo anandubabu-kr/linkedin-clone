@@ -2,28 +2,24 @@ import styled from "styled-components";
 import LeftSide from './Leftside'
 import RightSide from './Rightside'
 import Main from './Main'
-
-
+import { useEffect } from "react"
 
 const Home = (props) => {
-    return (<Container>
-        <Section>
-            <h5>
-                <a href="/home">
-                    Hiring in a Hurry? - 
-                </a>
-            </h5>
-                <p>
-                     Find talented pros in recored time with Upwork and keep bussiness moving.
-                </p>
-        </Section>
+    useEffect(() => {
+        document.title = "Feed | LinkedIn";
+    }, [])
 
-        <Layout>
-            <LeftSide/>
-            <Main/>
-            <RightSide/>
-        </Layout>
-    </Container>)
+    return (
+        <Container>
+            <Section>
+
+            </Section>
+            <Layout>
+                <LeftSide />
+                <Main />
+                <RightSide />
+            </Layout>
+        </Container>)
 }
 
 
@@ -33,10 +29,9 @@ const Container = styled.div`
     align-items: center;
     padding-top: 3rem;
     max-width: 100%;
-
 `;
+
 const Section = styled.div`
-    min-height: 50px;
     padding:1rem;
     text-align: center;
     box-sizing: border-box;
@@ -60,7 +55,6 @@ const Section = styled.div`
     }
 `;
 
-
 const Layout = styled.div`
     display: grid;
     max-width: 1128px;
@@ -70,6 +64,7 @@ const Layout = styled.div`
     row-gap: 1.5rem;
     grid-template-rows: auto;
     margin-top: 1.5rem 0;
+    position: static;
     @media screen and (max-width: 768px){
         display: flex;
         flex-direction: column;
@@ -77,5 +72,5 @@ const Layout = styled.div`
         
     }
 `;
-export default Home
+export default Home;
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 const Header = (props) => {
 
-const user = useSelector((state) => state.userInfo.user)
+    const user = useSelector((state) => state.userInfo.user)
 
 
     return (
@@ -24,31 +24,31 @@ const user = useSelector((state) => state.userInfo.user)
                 <Nav>
                     <NavListWrap>
                         <NavList>
-                            <a href="/home" className="active" >
+                            <a href="/" className="active" >
                                 <img src="/images/nav-home.svg" alt="Nav" />
                                 <span>Home</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a href="/home" >
+                            <a href="/network" >
                                 <img src="/images/nav-network.svg" alt="Nav" />
                                 <span>My Network</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a href="/home" >
+                            <a href="/jobs" >
                                 <img src="/images/nav-jobs.svg" alt="Nav" />
                                 <span>Jobs</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a href="/home" >
+                            <a href="/messages" >
                                 <img src="/images/nav-messaging.svg" alt="Nav" />
                                 <span>Messaging</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a href="/home" >
+                            <a href="/notifications" >
                                 <img src="/images/nav-notifications.svg" alt="Nav" />
                                 <span>Notifications</span>
                             </a>
@@ -56,17 +56,39 @@ const user = useSelector((state) => state.userInfo.user)
                         <NavList>
                             <User>
                                 <p>
-                                    <img src={user ? user.photoURL:"/images/user.svg"} alt="Nav" />
+                                    <img src={user ? user.photoURL : "/images/user.svg"} alt="Nav" />
                                     <span>
                                         Me
                                         <img src="/images/down-icon.svg" alt="Nav" />
                                     </span>
                                 </p>
-                                <Signout>
+                                <UserInfoCard >
+                                    <UserInfo>
+                                        <img src={user ? user.photoURL : "/images/user.svg"} alt="Nav" />
+                                        <h2>
+                                            {user.displayName}
+                                        </h2>
+                                    </UserInfo>
+                                    <ViewProfileButton>
+                                        View Profile
+                                    </ViewProfileButton>
+                                    <hr />
+                                    <AccountActions>
+                                        <h2>Account</h2>
+                                        <a href='settings'>Settings & Privecy</a>
+                                        <a href='help'>Help</a>
+                                        <a href='languages'>Language</a>
+                                    </AccountActions>
+                                    <ManageCard>
+                                        <h2>Manage</h2>
+                                        <a href='settings'>Post & Activity</a>
+                                        <a href='help'>Job post</a>
+
+                                    </ManageCard>
                                     <p>
                                         Sign Out
                                     </p>
-                                </Signout>
+                                </UserInfoCard>
                             </User>
                             <Work>
                                 <a href="/home" >
@@ -89,7 +111,6 @@ const Container = styled.div`
     background-color: white;
     border-bottom: 1px solid rgba(0,0,0,0.08);
     left: 0px;
-    padding: 0 25px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -105,6 +126,9 @@ const Content = styled.div`
 const Logo = styled.span`
     margin-right: 8px;
     font-size: 0px;
+    @media screen and (max-width: 768px) {
+        margin: 1rem ;
+    }
 `;
 const Search = styled.div`
     opacity: 1;
@@ -128,6 +152,7 @@ const Search = styled.div`
             vertical-align: text-top;
         }
     }
+
 `;
 const SearchIcon = styled.div`
     width: 40px;
@@ -148,11 +173,15 @@ const NavListWrap = styled.ul`
     display: flex;
     flex-wrap: nowrap;
     list-style: none;
+    @media screen and (max-width: 768px) {
+        justify-content: space-around;
+    }
 `;
 
 const NavList = styled.li`
     display: flex;
     align-items: center;
+    align-content: center;
     a{
         align-items: center;
         background: transparent;
@@ -176,12 +205,13 @@ const NavList = styled.li`
             
         }
     }
+
     &:hover,&:active{
         a{
             span{
                 color:rgba(0,0,0,.9)
-
             }
+            
         }
     }
 `;
@@ -199,21 +229,64 @@ const Nav = styled.nav`
 
 `;
 
-const Signout = styled.div`
+const UserInfoCard = styled.div`
     position: absolute;
-    top:45px;
+    top:55px;
     background-color: white;
     border-radius: 5px;
-    width:100px;
-    height:40px;
+    width:200px;
     font-size: 1rem;
     padding:.5rem;
+    margin-left: -200px;
     transition: .5s ease-in;
     text-align: center;
     display: none;
+    flex-direction: column;
+    img{
+        max-width: 50px;
+        padding: .5rem;
+        border-radius: 50%;
+    }
 `;
 
-const User = styled(NavList)`
+const UserInfo = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+const AccountActions = styled(UserInfo)`
+    border-top: 2px solid #dddddd;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: .5rem ;
+    h2{
+        margin:  .5rem 0px;
+    }
+    & a{
+        color: #343434;
+        font-weight: 400;
+        min-height: fit-content;
+        text-align: left;
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+`
+const ViewProfileButton = styled.button`
+    padding: .3rem .7rem ;
+    border: 2px solid blue;
+    color :blue;
+    border-radius: 30px;
+    width: 100%;
+    background-color: transparent;
+    &:hover{
+        cursor: pointer;
+    }
+`
+const User = styled.div`
     p{
         font-size: .8rem;
     }
@@ -227,13 +300,13 @@ const User = styled(NavList)`
         align-items: center;
     }
     &:hover{
-        ${Signout}{
-            align-items: center;
+        ${UserInfoCard}{
             display: flex;
         }
     }
 `;
 
+const ManageCard=styled(AccountActions)``
 const Work = styled(User)`
     border-left: 1px solid rgba(0,0,0,.07);
 `;

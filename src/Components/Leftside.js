@@ -14,10 +14,9 @@ const LeftSide = (props) => {
             Welcome,  {user && user.displayName}
           </Link>
           <AddPhotoText>
-            Add a photo <br/>
+            {/* Add a photo <br/> */}
             <p>
-            {user && user.email}
-
+              {user && user.email}
             </p>
           </AddPhotoText>
         </UserInfo>
@@ -87,7 +86,7 @@ const CardBackground = styled.div`
 `;
 const Photo = styled.div`
     box-shadow: none;
-    background-image: url(${(props)=>props.photoULR||'/images/photo.svg'});
+    background-image: url(${(props) => props.photoULR || '/images/photo.svg'});
     width: 72px;    
     aspect-ratio: 1/1;
     box-sizing: border-box; 
@@ -186,6 +185,9 @@ const CommunityCard = styled(ArtCard)`
   text-align: left;
   display: flex;
   flex-direction: column;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 60px;
   p {
     color: black;
     padding: 4px 12px 4px 12px;

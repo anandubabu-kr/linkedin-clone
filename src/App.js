@@ -1,11 +1,10 @@
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Components/Login.js';
 import Home from './Components/Home';
 import Header from './Components/Header';
 import ProtectedRoute from './Components/ProtectedRoutes'
 import { useEffect } from 'react';
-import { auth } from "./firebase"
+import { auth } from "./services/firebase"
 import { onAuthStateChanged } from "firebase/auth";
 import { setUser } from "./redux/actions/actionUser";
 import { useDispatch } from 'react-redux';

@@ -1,17 +1,33 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CreatePost from "./CreatePost";
-import { useState } from "react";
-
-const Main = (props) => {
+import { useState, useEffect } from "react";
+import postsServices from "../services/posts-services";
+import { Posts } from './Posts'
+const Main = () => {
     const user = useSelector((state) => state.userInfo.user)
-    const [showCreatePost, setShowCreatePost] = useState(false)
 
-    const handleShowCreatePostHandler=(e)=>{
-        e.preventDefault()
+    const [showCreatePost, setShowCreatePost] = useState(false)
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const getPosts = async () => {
+            const data = await postsServices.getAllPosts()
+            setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        }
+        getPosts()
+    }, [])
+
+    const handleShowCreatePostHandler = (e) => {
+        if (e) {
+            e.preventDefault()
+        }
         setShowCreatePost(!showCreatePost)
     }
-    
+
+    const postsToDisplay = posts.map((doc, index) => (
+        <Posts key={doc.id} doc={doc} index={index} />
+    ))
 
     return (
         <Container>
@@ -50,65 +66,17 @@ const Main = (props) => {
                         </button>
                     </div>
                 </ShareBox>
-                <div>
-                    <Article>
-                        <SharedActor>
-                            <section>
-                                <img src="/images/user.svg" alt="Next" />
-                                <div>
-                                    <span>Title</span>
-                                    <span>Info</span>
-                                    <span>Date</span>
-                                </div>
-                            </section>
-                            <button>
-                                <img src="/images/down-icon.svg" alt="Next" />
-                            </button>
-                        </SharedActor>
-                        <Description>Description</Description>
-                        <SharedImg>
-                            <p>
-                                <img src="/images/user.svg" alt="Sharing this " />
-                            </p>
-                        </SharedImg>
-                        <SocialCount>
-                            <li>
-                                <button>
-                                    <img src="https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l" alt="Like Action" />
-                                    <img src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo " alt="Celebrate Action" />
-                                    <span>73 Likes</span>
-
-                                </button>
-                            </li>
-                            <li>
-                                <p>3 Comments</p>
-                            </li>
-                        </SocialCount>
-                        <SocialActions>
-                            <button>
-                                <img src="/images/like-icon.svg" alt="Like react" />
-                                <span>Like</span>
-                            </button>
-                            <button>
-                                <img src="/images/comment-icon.svg" alt="Comment react" />
-                                <span>Comment</span>
-                            </button>
-                            <button>
-                                <img src="/images/share-icon.svg" alt="Share react" />
-                                <span>Share</span>
-                            </button>
-                            <button>
-                                <img src="/images/send-icon.svg" alt="Send react" />
-                                <span>Send</span>
-                            </button>
-                        </SocialActions>
-                    </Article>
-                </div>
+                <hr />
+                <PostsContainer>
+                    {postsToDisplay}
+                </PostsContainer>
             </CommonCard>
 
-            {showCreatePost?<CreatePost closeHandler={handleShowCreatePostHandler} />:''}
-            
-            
+            {showCreatePost ?
+                <CreatePostComponent id='createPost' >
+                    <CreatePost closeHandler={handleShowCreatePostHandler} />
+                </CreatePostComponent>
+                : ''}
         </Container>
     )
 }
@@ -120,12 +88,15 @@ const CommonCard = styled.div`
     text-align: center;
     overflow: hidden;
     margin-bottom: 8px;
-    background-color: #FFF;
     border-radius: 5px;
     position: relative;
     border: none;
-    box-shadow: 0 0 0 1px rgb(0 0 0 /15%),0 0 0 1px rgb(0 0 0 /20%);
 `;
+
+const PostsContainer = styled.div`
+ border:none
+`
+
 
 const ShareBox = styled(CommonCard)`
     display: flex;
@@ -145,7 +116,6 @@ const ShareBox = styled(CommonCard)`
             display: flex;
             font-weight: 600;
             cursor: pointer;
-
             align-items: center ;
         }
         &:first-child{
@@ -163,7 +133,7 @@ const ShareBox = styled(CommonCard)`
                 flex-grow:1;
                 padding-left: 1rem;
                 border :1px solid rgba(0,0,0,.07);
-                border-radius:5px;
+                border-radius:50px;
                 background-color: white;
                 text-align: left;
             }
@@ -184,126 +154,15 @@ const ShareBox = styled(CommonCard)`
         }
         
     }
-    `;
-
-const Article = styled(CommonCard)`
-    padding:0;
-    margin: 0 0 .5rem;
-    overflow:visible;
-    `;
-
-const SharedActor = styled.div`
-padding-right:40px;
-flex-wrap:nowrap;
-padding:12px 16px 0 ;
-margin-bottom: .5rem;
-align-items: center;
-display: flex;
-section{
-        margin: 12px;
-        flex-grow: 1;
-        overflow: hidden;
-        display: flex;
-        img{
-            width:48px;
-            aspect-ratio: 1/1;
-
-        }
-        &>div{
-            display:flex;
-            flex-direction:column;
-            flex-grow: 1;
-            flex-basis: 0;
-            margin-left: 8px;
-            overflow: hidden;
-            span{
-                text-align: left;
-                &:first-child{
-                    font-size: 14px;
-                    font-weight: 700;
-                    color: rgba(0,0,0,1);
-                }
-                &:nth-child(n + 1){
-                    font-size: 12px;
-                    color: rgba(0,0,0,0.6);
-                    
-                }
-            }
-        }
-    }
-    button{
-        position:absolute;
-        right: 12px;
-        top:0px;
-        background: transparent;
-        border:none; 
-        outline:none; 
-    }
 `;
-
-const Description = styled.div`
-    padding: 0 1rem;
-    overflow: hidden;
-    color: rgba(0,0,0,.9);
-    font-size: 14px;
-    text-align: left;
-`;
-
-const SharedImg = styled.div`
-    margin-top:.5rem;
-    width:100%;
-    display: block;
-    background-color: #f9fafb;
-    img{
-        object-fit: contain;
-        width: 100%;
-    }
-    `;
-
-const SocialCount = styled.ul`
-    line-height: 1.5;
-    display: flex;
-    align-items:flex-start;
-    overflow: auto;
-    margin: 0 16px;
-    padding: 8px 0px;
-    border-bottom: 1px solid #e9e5df;
-    list-style: none;
-    li{
-        margin-right: 5px;
-        font-size: 12px;
-        button{
-            display: flex;
-            border:none;
-            align-items: center;
-            background: transparent;
-            img{
-                width:20px;
-                aspect-ratio: 1/1;
-            }
-            span{
-                margin:8px;
-            }
-        }
-    }
-`;
-
-const SocialActions = styled.div`
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
-    margin: 0;
-    min-height: 40px;
-    padding:4px 8px;
-    button{
-        display:inline-flex;
-        align-items: center;
-        padding: 8px;
-        border:none;
-        background: transparent;
-        img{
-            margin:8px;
-        }
-    }
-`;
+const CreatePostComponent = styled.div`
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 12;
+    color: white;
+    background-color: rgba(0,0,0,0.8);
+`
 export default Main;
