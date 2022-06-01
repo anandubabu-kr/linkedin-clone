@@ -46,6 +46,8 @@ const CreatePost = (props) => {
                 description: editorText,
                 image: shareImage,
                 videoLink: videoLink,
+                reactions:[],
+                comments:[]
             }
             if(postsServices.addPost(newPost)){
                 closeHandler()

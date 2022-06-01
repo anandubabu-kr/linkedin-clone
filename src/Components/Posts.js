@@ -8,7 +8,7 @@ export const Posts = ({ doc, index }) => {
                 <section>
                     <img src={doc.creator.userImage} alt="Next" />
                     <div>
-                        <span>{doc.creator.displayName}</span>
+                        <p>{doc.creator.displayName}</p>
                         <span>{doc.creator.userMail}</span>
                         {/* <span> {doc.timestamp.toString()} </span> */}
                     </div>
@@ -83,14 +83,13 @@ const Article = styled(CommonCard)`
 `;
 
 const SharedActor = styled.div`
-padding-right:40px;
 flex-wrap:nowrap;
-padding:12px 16px 0 ;
+padding:12px 0px ;
 margin-bottom: .5rem;
 align-items: center;
 display: flex;
 section{
-        margin: 12px;
+        /* margin: 12px; */
         flex-grow: 1;
         overflow: hidden;
         display: flex;
@@ -106,19 +105,18 @@ section{
             flex-basis: 0;
             margin-left: 8px;
             overflow: hidden;
-            span{
+            p,span{
                 text-align: left;
                 margin-left: .5rem;
-                &:first-child{
-                    font-size: 16px;
-                    font-weight: 700;
-                    color: rgba(0,0,0,1);
-                }
-                &:nth-child(n + 1){
-                    font-size: 16px;
-                    color: rgba(0,0,0,0.6);
-                    
-                }
+                font-size: 14px;
+                color: rgba(0,0,0,.78);
+            }
+            p{
+                font-weight: 700;
+            }
+            span{
+                font-size: 12px;
+
             }
         }
     }

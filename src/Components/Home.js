@@ -27,6 +27,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
+
     padding-top: 3rem;
     max-width: 100%;
 `;
@@ -58,6 +60,7 @@ const Section = styled.div`
 const Layout = styled.div`
     display: grid;
     max-width: 1128px;
+    width:100%;
     grid-template-areas: "leftside main rightside";
     grid-template-columns: minmax(0,5fr) minmax(0,12fr) minmax(300px,7fr);
     column-gap: 1.5rem;

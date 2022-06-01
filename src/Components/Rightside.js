@@ -35,12 +35,20 @@ const RightSide = (props) => {
           <img src="/images/right-icon.svg" alt="" />
         </Recommendation>
       </FollowCard>
-      <BannerCard>
-        <img
-          src="https://static-exp1.licdn.com/scds/common/u/images/promo/ads/li_evergreen_jobs_ad_300x250_v1.jpg"
-          alt="Add page"
-        />
-      </BannerCard>
+      <StickyItems>
+        <BannerCard>
+          <img
+            src="https://static-exp1.licdn.com/scds/common/u/images/promo/ads/li_evergreen_jobs_ad_300x250_v1.jpg"
+            alt="Add page"
+          />
+        </BannerCard>
+        <Footer>
+          <a href="anandubabu.info">About</a>
+          <a href="anandubabu.info">Accessibility</a>
+          <a href="anandubabu.info">Help Center</a>
+        </Footer>
+
+      </StickyItems>
     </Container>
   )
 }
@@ -117,13 +125,34 @@ const Recommendation = styled.a`
   font-size: 14px;
 `;
 
-const BannerCard = styled(FollowCard)`
+const StickyItems=styled(FollowCard)`
     position: sticky;
     position: -webkit-sticky;
-        top: 60px;
-  img {
-    width: 100%;
-    height: 100%;
-  }
+    top: 60px;
+    background: transparent;
+    box-shadow:none;
+    padding: 0px;
+`
+const BannerCard = styled(FollowCard)`
+    img {
+      width: 100%;
+      height: 100%;
+    }
 `;
+
+const Footer = styled.footer`
+  a{
+    text-decoration: none;
+    font-size: 12px;
+    color: rgba(0,0,0,.8);
+    margin:.3rem .5rem;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+`
 export default RightSide;
+
+
+
+
