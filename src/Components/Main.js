@@ -96,8 +96,6 @@ const CommonCard = styled.div`
 const PostsContainer = styled.div`
  border:none
 `
-
-
 const ShareBox = styled(CommonCard)`
     display: flex;
     flex-direction: column;
@@ -155,6 +153,7 @@ const ShareBox = styled(CommonCard)`
         
     }
 `;
+
 const CreatePostComponent = styled.div`
     position: fixed;
     top:0;

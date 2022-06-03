@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import useClickOutSide from "./OutSideClick";
 const Header = (props) => {
 
-    const user = useSelector((state) => state.userInfo.user)
+    const user = useSelector((state) => state.userInfo.user);
+    const [showProfile, setShowProfile] = useState(false);
 
+    const showUserProfileHandler = (e) => {
+        if (e) {
+            e.preventDefault()
+        }
+        setShowProfile(!showProfile)
+    }
 
+    let userProfile = useClickOutSide(() => {
+        showUserProfileHandler()
+    })
     return (
         <Container>
             <Content>
@@ -54,7 +66,7 @@ const Header = (props) => {
                             </a>
                         </NavList>
                         <NavList>
-                            <User>
+                            <User onClick={showUserProfileHandler}>
                                 <p>
                                     <img src={user ? user.photoURL : "/images/user.svg"} alt="Nav" />
                                     <span>
@@ -62,7 +74,10 @@ const Header = (props) => {
                                         <img src="/images/down-icon.svg" alt="Nav" />
                                     </span>
                                 </p>
-                                <UserInfoCard >
+                            </User>
+                            {
+                                showProfile &&
+                                <UserInfoCard ref={userProfile}>
                                     <UserInfo>
                                         <img src={user ? user.photoURL : "/images/user.svg"} alt="Nav" />
                                         <h2>
@@ -89,7 +104,7 @@ const Header = (props) => {
                                         Sign Out
                                     </p>
                                 </UserInfoCard>
-                            </User>
+                            }
                             <Work>
                                 <a href="/home" >
                                     <img src="/images/nav-work.svg" alt="Nav" />
@@ -182,6 +197,7 @@ const NavList = styled.li`
     display: flex;
     align-items: center;
     align-content: center;
+    box-sizing: border-box;
     a{
         align-items: center;
         background: transparent;
@@ -195,24 +211,36 @@ const NavList = styled.li`
         min-width: 80px;
         position: relative;
         text-decoration: none;
+        img{
+            padding: 0px;
+            margin: 0px;
+        }
         span{
             color: rgba(0,0,0,.6);
             display: flex;
             align-items: center;
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
         }
         @media screen and (max-width: 768px) {
-            min-width: 70px;
-            
+            min-width: none;
+            padding: 0px;
+            margin:0px;
         }
     }
 
-    &:hover,&:active{
+    &:hover, .active{
         a{
             span{
-                color:rgba(0,0,0,.9)
+                color:rgba(0,0,0,.9);
+                background-image: linear-gradient(90deg, black,black);
+                background-repeat: no-repeat;
+                background-position: center bottom;
+                background-size: 100% 2px;
             }
-            
         }
+
     }
 `;
 
@@ -224,7 +252,8 @@ const Nav = styled.nav`
         left: 0;
         bottom: 0;
         background: white;
-        width: 100%;    
+        box-sizing: border-box;
+        width: 100%;
     }
 
 `;
@@ -240,7 +269,7 @@ const UserInfoCard = styled.div`
     margin-left: -200px;
     transition: .5s ease-in;
     text-align: center;
-    display: none;
+    display: flex;
     flex-direction: column;
     img{
         max-width: 50px;
@@ -282,9 +311,6 @@ const ViewProfileButton = styled.button`
     border-radius: 30px;
     width: 100%;
     background-color: transparent;
-    &:hover{
-        cursor: pointer;
-    }
 `
 const User = styled.div`
     p{
@@ -299,14 +325,10 @@ const User = styled.div`
         display: flex;
         align-items: center;
     }
-    &:hover{
-        ${UserInfoCard}{
-            display: flex;
-        }
-    }
 `;
 
-const ManageCard=styled(AccountActions)``
+const ManageCard = styled(AccountActions)``
+
 const Work = styled(User)`
     border-left: 1px solid rgba(0,0,0,.07);
 `;

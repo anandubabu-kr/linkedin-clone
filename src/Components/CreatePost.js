@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import ReactPlayer from 'react-player'
 import postsServices from "../services/posts-services";
+import useClickOutSide from './OutSideClick'
+
 
 const CreatePost = (props) => {
     const [editorText, setEditorText] = useState('')
@@ -10,7 +12,6 @@ const CreatePost = (props) => {
     const [videoLink, setVideoLink] = useState('');
     const [videoSelect, setVideoSelect] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null)
-    const closeHandler=props.closeHandler
     const user = useSelector((state) => state.userInfo.user)
 
     const handleshareImageChange = (e) => {
@@ -46,18 +47,23 @@ const CreatePost = (props) => {
                 description: editorText,
                 image: shareImage,
                 videoLink: videoLink,
-                reactions:[],
-                comments:[]
+                reactions: [],
+                comments: []
             }
-            if(postsServices.addPost(newPost)){
-                closeHandler()
+            if (postsServices.addPost(newPost)) {
+                props.closeHandler()
             }
         } else {
             setErrorMessage('Please add description to your post')
         }
     }
+
+    let componentRef = useClickOutSide(() => {
+        props.closeHandler()
+    })
+
     return (
-        <Content>
+        <Content ref={componentRef}>
             <Header>
                 <h2>Create a post</h2>
                 <button onClick={props.closeHandler}>

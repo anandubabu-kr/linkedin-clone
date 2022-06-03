@@ -45,7 +45,14 @@ const RightSide = (props) => {
         <Footer>
           <a href="anandubabu.info">About</a>
           <a href="anandubabu.info">Accessibility</a>
-          <a href="anandubabu.info">Help Center</a>
+          <a href="anandubabu.info">Help Center</a> <br/>
+          <a href="anandubabu.info">Privecy & Terms</a>
+          <a href="anandubabu.info">Ad choices</a> <br/>
+          <a href="anandubabu.info">Advertising </a>
+          <a href="anandubabu.info">Business Services</a> <br/>
+          <a href="anandubabu.info">Get The LinkedIn App</a>
+          <a href="anandubabu.info">More</a>
+          <p>LinkedIn Coorparation &copy; 2022</p>
         </Footer>
 
       </StickyItems>
@@ -141,18 +148,18 @@ const BannerCard = styled(FollowCard)`
 `;
 
 const Footer = styled.footer`
-  a{
+  a,p{
     text-decoration: none;
     font-size: 12px;
-    color: rgba(0,0,0,.8);
-    margin:.3rem .5rem;
+    color: rgba(0,0,0,.6);
+    margin: 1rem .5rem;
     &:hover{
       text-decoration: underline;
+    }
+    p{
+    color: rgba(0,0,0,.8);
+
     }
   }
 `
 export default RightSide;
-
-
-
-

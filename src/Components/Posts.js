@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import ReactPlayer from 'react-player'
 
 export const Posts = ({ doc, index }) => {
     return (
@@ -26,7 +27,7 @@ export const Posts = ({ doc, index }) => {
 
             }
             {
-                doc.videoLink && <p>Video </p>
+                doc.videoLink && <ReactPlayer width={'100%'} url={doc.videoLink} />
             }
             <SocialCount>
                 <div>
@@ -77,6 +78,8 @@ const CommonCard = styled.div`
 const Article = styled(CommonCard)`
     padding: 0px 1rem ;
     margin: 1rem 0px;
+    box-sizing: border-box;
+
     overflow:visible;
     box-shadow: 0 0 0 1px rgb(0 0 0 /15%),0 0 0 1px rgb(0 0 0 /20%);
 

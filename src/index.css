@@ -11,7 +11,12 @@ body{
   box-sizing: border-box;
 }
 
-
+.active{
+  background-image: linear-gradient(90deg, black,black);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 2px;
+}
 
 h1,h2,h3,h4,h5,h6,div,header,img,i,html,label,li,nav,p,small,span,ul{
   margin: 0px;
