@@ -111,6 +111,7 @@ const FeedList = styled.ul`
       max-width: 480px;
       text-align: center;
       outline: none;
+      border:none;
     }
   }
 `;
@@ -130,6 +131,7 @@ const Recommendation = styled.a`
   display: flex;
   align-items: center;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 const StickyItems=styled(FollowCard)`

@@ -1,8 +1,28 @@
 import React from 'react'
 import styled from "styled-components";
 import ReactPlayer from 'react-player'
+import { useSelector } from 'react-redux';
+import postsServices from "../services/posts-services";
 
 export const Posts = ({ doc, index }) => {
+
+    const user = useSelector((state)=>state.userInfo.user)
+    // const postsX=useSelector(state=>state.posts.posts)
+    // console.log(postsX.length)
+    const likeClickHandler = () => {
+        const newDoc=doc
+        if(newDoc.reactions.includes(user.email)){
+            newDoc.reactions.pop(user.email)
+            postsServices.updatePosts(doc.id,newDoc)
+        }else{
+            newDoc.reactions.push(user.email)
+            postsServices.updatePosts(doc.id,newDoc)
+        }
+        
+    }
+    const updatePost=()=>{
+        console.log('Update')
+    }
     return (
         <Article >
             <SharedActor>
@@ -14,7 +34,7 @@ export const Posts = ({ doc, index }) => {
                         {/* <span> {doc.timestamp.toString()} </span> */}
                     </div>
                 </section>
-                <button>
+                <button onClick={updatePost}>
                     <img src="/images/more-icon.svg" alt="Next" />
                 </button>
             </SharedActor>
@@ -33,8 +53,8 @@ export const Posts = ({ doc, index }) => {
                 <div>
                     <button>
                         <img src="https://static-exp1.licdn.com/sc/h/f4ly07ldn7194ciimghrumv3l" alt="Like Action" />
-                        <img src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo " alt="Celebrate Action" />
-                        <span>73 </span>
+                        {/* <img src="https://static-exp1.licdn.com/sc/h/3c4dl0u9dy2zjlon6tf5jxlqo " alt="Celebrate Action" /> */}
+                        <span> {doc.reactions&& doc.reactions.length} </span>
 
                     </button>
                 </div>
@@ -43,7 +63,7 @@ export const Posts = ({ doc, index }) => {
                 </div>
             </SocialCount>
             <SocialActions>
-                <button>
+                <button onClick={likeClickHandler}>
                     <img src="/images/like-icon.svg" alt="Like react" />
                     <span>Like</span>
                 </button>

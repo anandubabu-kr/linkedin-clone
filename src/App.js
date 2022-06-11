@@ -10,33 +10,33 @@ import { setUser } from "./redux/actions/actionUser";
 import { useDispatch } from 'react-redux';
 
 function App() {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   useEffect(() => {
     // console.log('app loaded')
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       // console.log("Auth", currentuser);
       dispatch(setUser(currentuser));
     });
-  return () => {
-    unsubscribe();
-  };
-}, [dispatch])
-return (
-  <div className="App">
-    <BrowserRouter>
-      <Routes>
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/' element={
-          <ProtectedRoute>
-            <Header />
-            <Home />
-          </ProtectedRoute>
-        } />
-        <Route exact path='*' element={<ErrorPage />} />
-      </Routes>
-    </BrowserRouter>
-  </div >
-);
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch])
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/' element={
+            <ProtectedRoute>
+              <Header />
+              <Home />
+            </ProtectedRoute>
+          } />
+          <Route exact path='*' element={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div >
+  );
 }
 
 export default App;
@@ -45,9 +45,15 @@ export default App;
 const ErrorPage = () => {
   return (
     <div className='error-page'>
-      <h1>
-        404 buddy
-      </h1>
+      <div>
+
+        <h1>
+          Feature is in progress
+        </h1>
+        <a href='/'>
+          <img src='/images/home-logo.svg' alt='home' />
+        </a>
+      </div>
     </div>
   )
 }

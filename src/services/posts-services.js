@@ -48,6 +48,7 @@ class PostServices {
         }
 
     }
+
     updatePosts = (id, updateBook) => {
         const postDoc = doc(db, 'posts', id)
         return updateDoc(postDoc, updateBook)
@@ -57,9 +58,11 @@ class PostServices {
         const postDoc = doc(db, 'posts', id)
         return deleteDoc(postDoc)
     }
+
     getAllPosts = () => {
         return getDocs(postColloctionRef)
     }
+
     getPost = (id) => {
         const postDoc = doc(db, 'posts', id)
         return getDoc(postDoc)

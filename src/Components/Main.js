@@ -1,11 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import CreatePost from "./CreatePost";
 import { useState, useEffect } from "react";
 import postsServices from "../services/posts-services";
 import { Posts } from './Posts'
+import { setAllPosts } from "../redux/actions/actionPosts";
+
 const Main = () => {
     const user = useSelector((state) => state.userInfo.user)
+    const dispatch=useDispatch()
 
     const [showCreatePost, setShowCreatePost] = useState(false)
     const [posts, setPosts] = useState([]);
@@ -17,6 +20,9 @@ const Main = () => {
         }
         getPosts()
     }, [])
+
+    // console.log('posts : ',posts.length)
+    dispatch(setAllPosts(posts))
 
     const handleShowCreatePostHandler = (e) => {
         if (e) {

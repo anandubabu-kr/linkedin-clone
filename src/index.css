@@ -41,7 +41,9 @@ button{
 
 .error-page>*{
   margin: auto;
+  text-align: center;
 }
-.error-page>h1{
+.error-page>div h1{
+  padding: 3rem;
   font-size: 4rem;
 }

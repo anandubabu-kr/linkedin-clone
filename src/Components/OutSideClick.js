@@ -3,6 +3,7 @@ import { useRef, useEffect } from "react";
 /**
  * Custome Hook that alerts clicks outside of the passed ref
  */
+
 const useClickOutSide = (handler) => {
   let componentRef = useRef();
   useEffect(() => {

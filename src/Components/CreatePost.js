@@ -12,6 +12,7 @@ const CreatePost = (props) => {
     const [videoLink, setVideoLink] = useState('');
     const [videoSelect, setVideoSelect] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null)
+    
     const user = useSelector((state) => state.userInfo.user)
 
     const handleshareImageChange = (e) => {
@@ -24,17 +25,21 @@ const CreatePost = (props) => {
         }
         setShareImage(image)
         setVideoSelect(false)
+        setVideoLink('')
     }
+
     const handlevideoLinkChange = (e) => {
         setVideoLink(e.target.value)
+        setShareImage('')
     }
+
     const handleEditorTextChange = (e) => {
         e.preventDefault()
         setEditorText(e.target.value);
-
         setErrorMessage(null)
 
     }
+    
     const postSubmitHandler = (e) => {
         e.preventDefault()
         if (editorText) {

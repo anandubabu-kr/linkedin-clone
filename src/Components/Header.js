@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import useClickOutSide from "./OutSideClick";
+
 const Header = (props) => {
 
     const user = useSelector((state) => state.userInfo.user);
